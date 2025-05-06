@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh "mvn -Dmaven.test.failure.ignore=true -f api-gateway/ clean package"
             }
-                            
+                    
         }
         
         stage('archive') {
@@ -30,6 +30,12 @@ pipeline {
         stage('publish test result') {
             steps {
                 junit 'api-gateway/target/surefire-reports/*.xml'
+            }
+        }
+        
+        stage('test') {
+            steps {
+                sh "echo testing"
             }
         }
     }
